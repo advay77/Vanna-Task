@@ -1,0 +1,396 @@
+{
+  "abi": [
+      {
+          "type": "constructor",
+          "inputs": [],
+          "stateMutability": "nonpayable"
+      },
+      {
+          "type": "function",
+          "name": "admin",
+          "inputs": [],
+          "outputs": [
+              {
+                  "name": "",
+                  "type": "address",
+                  "internalType": "address"
+              }
+          ],
+          "stateMutability": "view"
+      },
+      {
+          "type": "function",
+          "name": "getPrice",
+          "inputs": [
+              {
+                  "name": "token",
+                  "type": "address",
+                  "internalType": "address"
+              },
+              {
+                  "name": "account",
+                  "type": "address",
+                  "internalType": "address"
+              }
+          ],
+          "outputs": [
+              {
+                  "name": "",
+                  "type": "uint256",
+                  "internalType": "uint256"
+              }
+          ],
+          "stateMutability": "nonpayable"
+      },
+      {
+          "type": "function",
+          "name": "oracle",
+          "inputs": [
+              {
+                  "name": "",
+                  "type": "address",
+                  "internalType": "address"
+              }
+          ],
+          "outputs": [
+              {
+                  "name": "",
+                  "type": "address",
+                  "internalType": "contract IOracle"
+              }
+          ],
+          "stateMutability": "view"
+      },
+      {
+          "type": "function",
+          "name": "setOracle",
+          "inputs": [
+              {
+                  "name": "token",
+                  "type": "address",
+                  "internalType": "address"
+              },
+              {
+                  "name": "_oracle",
+                  "type": "address",
+                  "internalType": "contract IOracle"
+              }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+      },
+      {
+          "type": "function",
+          "name": "transferOwnership",
+          "inputs": [
+              {
+                  "name": "newAdmin",
+                  "type": "address",
+                  "internalType": "address"
+              }
+          ],
+          "outputs": [],
+          "stateMutability": "nonpayable"
+      },
+      {
+          "type": "event",
+          "name": "OwnershipTransferred",
+          "inputs": [
+              {
+                  "name": "previousAdmin",
+                  "type": "address",
+                  "indexed": true,
+                  "internalType": "address"
+              },
+              {
+                  "name": "newAdmin",
+                  "type": "address",
+                  "indexed": true,
+                  "internalType": "address"
+              }
+          ],
+          "anonymous": false
+      },
+      {
+          "type": "event",
+          "name": "UpdateOracle",
+          "inputs": [
+              {
+                  "name": "token",
+                  "type": "address",
+                  "indexed": true,
+                  "internalType": "address"
+              },
+              {
+                  "name": "feed",
+                  "type": "address",
+                  "indexed": true,
+                  "internalType": "address"
+              }
+          ],
+          "anonymous": false
+      },
+      {
+          "type": "error",
+          "name": "AdminOnly",
+          "inputs": []
+      },
+      {
+          "type": "error",
+          "name": "PriceUnavailable",
+          "inputs": []
+      },
+      {
+          "type": "error",
+          "name": "ZeroAddress",
+          "inputs": []
+      }
+  ],
+  "bytecode": {
+      "object": "0x6080604052348015600f57600080fd5b503380602e5760405163d92e233d60e01b815260040160405180910390fd5b600080546001600160a01b039092166001600160a01b03199092169190911790556103b38061005e6000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80635c38eb3a1461005c578063ac41865a14610071578063eb37d34914610097578063f2fde38b146100d8578063f851a440146100eb575b600080fd5b61006f61006a36600461030e565b6100fe565b005b61008461007f36600461030e565b610180565b6040519081526020015b60405180910390f35b6100c06100a5366004610347565b6001602052600090815260409020546001600160a01b031681565b6040516001600160a01b03909116815260200161008e565b61006f6100e6366004610347565b610249565b6000546100c0906001600160a01b031681565b6000546001600160a01b0316331461012957604051633057182d60e21b815260040160405180910390fd5b6001600160a01b0382811660008181526001602052604080822080546001600160a01b0319169486169485179055517fb1d1442dba579887e297ac433e5716c847abf2dc052ee9de4869b7b1b8f6206d9190a35050565b6001600160a01b038281166000908152600160205260408120549091166101ba5760405163cb08be8160e01b815260040160405180910390fd5b6001600160a01b0383811660008181526001602052604090819020549051635620c32d60e11b8152600481019290925284831660248301529091169063ac41865a906044016020604051808303816000875af115801561021e573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102429190610364565b9392505050565b6000546001600160a01b0316331461027457604051633057182d60e21b815260040160405180910390fd5b6001600160a01b03811661029b5760405163d92e233d60e01b815260040160405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b038116811461030b57600080fd5b50565b6000806040838503121561032157600080fd5b823561032c816102f6565b9150602083013561033c816102f6565b809150509250929050565b60006020828403121561035957600080fd5b8135610242816102f6565b60006020828403121561037657600080fd5b505191905056fea26469706673582212201dc5106fcccadffda741b4b3b5ed8547e9194847671f65a8e0ca7210b5547de464736f6c63430008190033",
+      "sourceMap": "340:1982:25:-:0;;;1049:42;;;;;;;;;-1:-1:-1;1071:10:25;;283:53:35;;316:20;;-1:-1:-1;;;316:20:35;;;;;;;;;;;283:53;346:5;:14;;-1:-1:-1;;;;;346:14:35;;;-1:-1:-1;;;;;;346:14:35;;;;;;;;;340:1982:25;;;;;;",
+      "linkReferences": {}
+  },
+  "deployedBytecode": {
+      "object": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80635c38eb3a1461005c578063ac41865a14610071578063eb37d34914610097578063f2fde38b146100d8578063f851a440146100eb575b600080fd5b61006f61006a36600461030e565b6100fe565b005b61008461007f36600461030e565b610180565b6040519081526020015b60405180910390f35b6100c06100a5366004610347565b6001602052600090815260409020546001600160a01b031681565b6040516001600160a01b03909116815260200161008e565b61006f6100e6366004610347565b610249565b6000546100c0906001600160a01b031681565b6000546001600160a01b0316331461012957604051633057182d60e21b815260040160405180910390fd5b6001600160a01b0382811660008181526001602052604080822080546001600160a01b0319169486169485179055517fb1d1442dba579887e297ac433e5716c847abf2dc052ee9de4869b7b1b8f6206d9190a35050565b6001600160a01b038281166000908152600160205260408120549091166101ba5760405163cb08be8160e01b815260040160405180910390fd5b6001600160a01b0383811660008181526001602052604090819020549051635620c32d60e11b8152600481019290925284831660248301529091169063ac41865a906044016020604051808303816000875af115801561021e573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906102429190610364565b9392505050565b6000546001600160a01b0316331461027457604051633057182d60e21b815260040160405180910390fd5b6001600160a01b03811661029b5760405163d92e233d60e01b815260040160405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b038116811461030b57600080fd5b50565b6000806040838503121561032157600080fd5b823561032c816102f6565b9150602083013561033c816102f6565b809150509250929050565b60006020828403121561035957600080fd5b8135610242816102f6565b60006020828403121561037657600080fd5b505191905056fea26469706673582212201dc5106fcccadffda741b4b3b5ed8547e9194847671f65a8e0ca7210b5547de464736f6c63430008190033",
+      "sourceMap": "340:1982:25:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2158:162;;;;;;:::i;:::-;;:::i;:::-;;1679:217;;;;;;:::i;:::-;;:::i;:::-;;;1099:25:37;;;1087:2;1072:18;1679:217:25;;;;;;;;708:41;;;;;;:::i;:::-;;;;;;;;;;;;-1:-1:-1;;;;;708:41:25;;;;;;-1:-1:-1;;;;;1568:32:37;;;1550:51;;1538:2;1523:18;708:41:25;1387:220:37;478:222:35;;;;;;:::i;:::-;;:::i;128:20::-;;;;;-1:-1:-1;;;;;128:20:35;;;2158:162:25;408:5:35;;-1:-1:-1;;;;;408:5:35;417:10;408:19;404:50;;436:18;;-1:-1:-1;;;436:18:35;;;;;;;;;;;404:50;-1:-1:-1;;;;;2238:13:25;;::::1;;::::0;;;:6:::1;:13;::::0;;;;;:23;;-1:-1:-1;;;;;;2238:23:25::1;::::0;;::::1;::::0;;::::1;::::0;;2276:37;::::1;::::0;2238:13;2276:37:::1;2158:162:::0;;:::o;1679:217::-;-1:-1:-1;;;;;1773:13:25;;;1746:4;1773:13;;;:6;:13;;;;;;1746:4;;1773:13;1762:73;;1810:25;;-1:-1:-1;;;1810:25:25;;;;;;;;;;;1762:73;-1:-1:-1;;;;;1852:13:25;;;;;;;:6;:13;;;;;;;;:37;;-1:-1:-1;;;1852:37:25;;;;;2032:34:37;;;;2102:15;;;2082:18;;;2075:43;1852:13:25;;;;:22;;1967:18:37;;1852:37:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;1845:44;1679:217;-1:-1:-1;;;1679:217:25:o;478:222:35:-;408:5;;-1:-1:-1;;;;;408:5:35;417:10;408:19;404:50;;436:18;;-1:-1:-1;;;436:18:35;;;;;;;;;;;404:50;-1:-1:-1;;;;;564:22:35;::::1;560:55;;595:20;;-1:-1:-1::0;;;595:20:35::1;;;;;;;;;;;560:55;651:5;::::0;;630:37:::1;::::0;-1:-1:-1;;;;;630:37:35;;::::1;::::0;651:5;::::1;::::0;630:37:::1;::::0;::::1;677:5;:16:::0;;-1:-1:-1;;;;;;677:16:35::1;-1:-1:-1::0;;;;;677:16:35;;;::::1;::::0;;;::::1;::::0;;478:222::o;14:131:37:-;-1:-1:-1;;;;;89:31:37;;79:42;;69:70;;135:1;132;125:12;69:70;14:131;:::o;150:405::-;235:6;243;296:2;284:9;275:7;271:23;267:32;264:52;;;312:1;309;302:12;264:52;351:9;338:23;370:31;395:5;370:31;:::i;:::-;420:5;-1:-1:-1;477:2:37;462:18;;449:32;490:33;449:32;490:33;:::i;:::-;542:7;532:17;;;150:405;;;;;:::o;1135:247::-;1194:6;1247:2;1235:9;1226:7;1222:23;1218:32;1215:52;;;1263:1;1260;1253:12;1215:52;1302:9;1289:23;1321:31;1346:5;1321:31;:::i;2129:184::-;2199:6;2252:2;2240:9;2231:7;2227:23;2223:32;2220:52;;;2268:1;2265;2258:12;2220:52;-1:-1:-1;2291:16:37;;2129:184;-1:-1:-1;2129:184:37:o",
+      "linkReferences": {}
+  },
+  "methodIdentifiers": {
+      "admin()": "f851a440",
+      "getPrice(address,address)": "ac41865a",
+      "oracle(address)": "eb37d349",
+      "setOracle(address,address)": "5c38eb3a",
+      "transferOwnership(address)": "f2fde38b"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.25+commit.b61c2a91\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AdminOnly\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PriceUnavailable\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ZeroAddress\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"feed\",\"type\":\"address\"}],\"name\":\"UpdateOracle\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract IOracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"contract IOracle\",\"name\":\"_oracle\",\"type\":\"address\"}],\"name\":\"setOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"Oracle Facade\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Contract Constructor\"},\"oracle(address)\":{\"notice\":\"Mapping of token to Price Oracle for the token\"}},\"notice\":\"This contract acts as a single interface for the client to fetch price of a given token in terms of eth\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/core/OracleFacade.sol\":\"OracleFacade\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/solmate/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solmate/=lib/solmate/src/\",\":v3-core/=lib/v3-core/\"]},\"sources\":{\"src/core/IOracle.sol\":{\"keccak256\":\"0xed628587755012f23285fc9dc92146a9d795df0b7c4d3c3ea58e7b901021cea6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://46f94f6c2f272180c5050fec57f142df4af93115d239a835311a8c5a003c3b23\",\"dweb:/ipfs/QmcM8os3sj8ktTxABYQ2pBY9tZH2TwfDA7gQLf7Z9YJ8ej\"]},\"src/core/OracleFacade.sol\":{\"keccak256\":\"0x8f9fab506d3276101123d104dd8ad9a68e6f43b1fc2b66fc8b24dce29f916afc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://68f38643967ebf1a9be4340cb1f6c77d8d3a645b406b8ee11dcb887ebeebe191\",\"dweb:/ipfs/QmeUqhpkfAiE5S8udBCwHu48TXvtxtf7GmGhN9omwQrdTU\"]},\"src/utils/Errors.sol\":{\"keccak256\":\"0x7d4d70d5611d4188eaaf14d181a5a7aa9dfc8f01c416f6796db193fb9fce844e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9aafab4c25baa9bd78ec7940885d790695a48a4f59c73b6a8fd090a4306484d\",\"dweb:/ipfs/QmVTZfjB2Hx3GiqrzrdDqkZkTjkby8K1u8qb9PzFm4Bm1R\"]},\"src/utils/Ownable.sol\":{\"keccak256\":\"0x9fb09af29b3e1baf46e7b86d69275e97985ff23505d0fe8c348cce055dcde384\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3c62eed390399e4e42e4056699d4c7ecb804a913a7a38777b090462afa70daf4\",\"dweb:/ipfs/QmeWnBm7pBWVZysZMiqB5EEE5rzNKeEjyfbm4S4yUwWLPr\"]}},\"version\":1}",
+  "metadata": {
+      "compiler": {
+          "version": "0.8.25+commit.b61c2a91"
+      },
+      "language": "Solidity",
+      "output": {
+          "abi": [
+              {
+                  "inputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "constructor"
+              },
+              {
+                  "inputs": [],
+                  "type": "error",
+                  "name": "AdminOnly"
+              },
+              {
+                  "inputs": [],
+                  "type": "error",
+                  "name": "PriceUnavailable"
+              },
+              {
+                  "inputs": [],
+                  "type": "error",
+                  "name": "ZeroAddress"
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "previousAdmin",
+                          "type": "address",
+                          "indexed": true
+                      },
+                      {
+                          "internalType": "address",
+                          "name": "newAdmin",
+                          "type": "address",
+                          "indexed": true
+                      }
+                  ],
+                  "type": "event",
+                  "name": "OwnershipTransferred",
+                  "anonymous": false
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "token",
+                          "type": "address",
+                          "indexed": true
+                      },
+                      {
+                          "internalType": "address",
+                          "name": "feed",
+                          "type": "address",
+                          "indexed": true
+                      }
+                  ],
+                  "type": "event",
+                  "name": "UpdateOracle",
+                  "anonymous": false
+              },
+              {
+                  "inputs": [],
+                  "stateMutability": "view",
+                  "type": "function",
+                  "name": "admin",
+                  "outputs": [
+                      {
+                          "internalType": "address",
+                          "name": "",
+                          "type": "address"
+                      }
+                  ]
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "token",
+                          "type": "address"
+                      },
+                      {
+                          "internalType": "address",
+                          "name": "account",
+                          "type": "address"
+                      }
+                  ],
+                  "stateMutability": "nonpayable",
+                  "type": "function",
+                  "name": "getPrice",
+                  "outputs": [
+                      {
+                          "internalType": "uint256",
+                          "name": "",
+                          "type": "uint256"
+                      }
+                  ]
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "",
+                          "type": "address"
+                      }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function",
+                  "name": "oracle",
+                  "outputs": [
+                      {
+                          "internalType": "contract IOracle",
+                          "name": "",
+                          "type": "address"
+                      }
+                  ]
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "token",
+                          "type": "address"
+                      },
+                      {
+                          "internalType": "contract IOracle",
+                          "name": "_oracle",
+                          "type": "address"
+                      }
+                  ],
+                  "stateMutability": "nonpayable",
+                  "type": "function",
+                  "name": "setOracle"
+              },
+              {
+                  "inputs": [
+                      {
+                          "internalType": "address",
+                          "name": "newAdmin",
+                          "type": "address"
+                      }
+                  ],
+                  "stateMutability": "nonpayable",
+                  "type": "function",
+                  "name": "transferOwnership"
+              }
+          ],
+          "devdoc": {
+              "kind": "dev",
+              "methods": {},
+              "version": 1
+          },
+          "userdoc": {
+              "kind": "user",
+              "methods": {
+                  "constructor": {
+                      "notice": "Contract Constructor"
+                  },
+                  "oracle(address)": {
+                      "notice": "Mapping of token to Price Oracle for the token"
+                  }
+              },
+              "version": 1
+          }
+      },
+      "settings": {
+          "remappings": [
+              "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+              "ds-test/=lib/solmate/lib/ds-test/src/",
+              "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+              "forge-std/=lib/forge-std/src/",
+              "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+              "solmate/=lib/solmate/src/",
+              "v3-core/=lib/v3-core/"
+          ],
+          "optimizer": {
+              "enabled": true,
+              "runs": 200
+          },
+          "metadata": {
+              "bytecodeHash": "ipfs"
+          },
+          "compilationTarget": {
+              "src/core/OracleFacade.sol": "OracleFacade"
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+      },
+      "sources": {
+          "src/core/IOracle.sol": {
+              "keccak256": "0xed628587755012f23285fc9dc92146a9d795df0b7c4d3c3ea58e7b901021cea6",
+              "urls": [
+                  "bzz-raw://46f94f6c2f272180c5050fec57f142df4af93115d239a835311a8c5a003c3b23",
+                  "dweb:/ipfs/QmcM8os3sj8ktTxABYQ2pBY9tZH2TwfDA7gQLf7Z9YJ8ej"
+              ],
+              "license": "MIT"
+          },
+          "src/core/OracleFacade.sol": {
+              "keccak256": "0x8f9fab506d3276101123d104dd8ad9a68e6f43b1fc2b66fc8b24dce29f916afc",
+              "urls": [
+                  "bzz-raw://68f38643967ebf1a9be4340cb1f6c77d8d3a645b406b8ee11dcb887ebeebe191",
+                  "dweb:/ipfs/QmeUqhpkfAiE5S8udBCwHu48TXvtxtf7GmGhN9omwQrdTU"
+              ],
+              "license": "MIT"
+          },
+          "src/utils/Errors.sol": {
+              "keccak256": "0x7d4d70d5611d4188eaaf14d181a5a7aa9dfc8f01c416f6796db193fb9fce844e",
+              "urls": [
+                  "bzz-raw://b9aafab4c25baa9bd78ec7940885d790695a48a4f59c73b6a8fd090a4306484d",
+                  "dweb:/ipfs/QmVTZfjB2Hx3GiqrzrdDqkZkTjkby8K1u8qb9PzFm4Bm1R"
+              ],
+              "license": "MIT"
+          },
+          "src/utils/Ownable.sol": {
+              "keccak256": "0x9fb09af29b3e1baf46e7b86d69275e97985ff23505d0fe8c348cce055dcde384",
+              "urls": [
+                  "bzz-raw://3c62eed390399e4e42e4056699d4c7ecb804a913a7a38777b090462afa70daf4",
+                  "dweb:/ipfs/QmeWnBm7pBWVZysZMiqB5EEE5rzNKeEjyfbm4S4yUwWLPr"
+              ],
+              "license": "MIT"
+          }
+      },
+      "version": 1
+  },
+  "id": 25
+}
